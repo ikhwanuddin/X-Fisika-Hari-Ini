@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Penjumlahan Dua Gelombang</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .canvas-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        canvas {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            display: block;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        label {
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+        .value-display {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+        .info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .wave-label {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+        .wave-label div {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .color-box {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            border-radius: 3px;
+        }
+        .blue { background-color: #3498db; }
+        .red { background-color: #e74c3c; }
+        .green { background-color: #2ecc71; }
+        .credit {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Animasi Penjumlahan Dua Gelombang</h1>
+        
+        <div class="wave-label">
+            <div><span class="color-box blue"></span> Gelombang 1</div>
+            <div><span class="color-box red"></span> Gelombang 2</div>
+            <div><span class="color-box green"></span> Gelombang Gabungan</div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="waveCanvas" width="895" height="500"></canvas>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="freq1">Frekuensi Gelombang 1 (Hz):</label>
+                <input type="range" id="freq1" min="0.5" max="3" step="0.1" value="1">
+                <div class="value-display" id="freq1-value">1.0 Hz</div>
+            </div>
+            <div class="control-group">
+                <label for="freq2">Frekuensi Gelombang 2 (Hz):</label>
+                <input type="range" id="freq2" min="0.5" max="3" step="0.1" value="1.5">
+                <div class="value-display" id="freq2-value">1.5 Hz</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="amplitude1">Amplitudo Gelombang 1:</label>
+                <input type="range" id="amplitude1" min="10" max="100" step="5" value="50">
+                <div class="value-display" id="amplitude1-value">50</div>
+            </div>
+            <div class="control-group">
+                <label for="amplitude2">Amplitudo Gelombang 2:</label>
+                <input type="range" id="amplitude2" min="10" max="100" step="5" value="50">
+                <div class="value-display" id="amplitude2-value">50</div>
+            </div>
+            
+            <div class="control-group">
+                <label for="phase1">Fasa Gelombang 1 (derajat):</label>
+                <input type="range" id="phase1" min="0" max="360" step="5" value="0">
+                <div class="value-display" id="phase1-value">0° (0 rad)</div>
+            </div>
+            <div class="control-group">
+                <label for="phase2">Fasa Gelombang 2 (derajat):</label>
+                <input type="range" id="phase2" min="0" max="360" step="5" value="0">
+                <div class="value-display" id="phase2-value">0° (0 rad)</div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <p>Animasi ini menunjukkan penjumlahan dua gelombang sinusoidal dengan frekuensi berbeda. 
+               Gelombang pertama (biru) dan gelombang kedua (merah) bergerak dari kiri ke kanan pada sumbu atas.
+               Hasil penjumlahan (hijau) ditampilkan pada sumbu bawah.</p>
+            <p>Gunakan slider untuk mengubah frekuensi, amplitudo, dan fasa masing-masing gelombang.</p>
+        </div>
+        
+        <div class="credit">
+            Dibuat oleh: <a href="https://x.com/ikhwanuddin">x.com/ikhwanuddin</a>
+        </div>
+    </div>
+
+    <script>
+        // Dapatkan elemen canvas dan konteks
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Variabel untuk parameter gelombang
+        let freq1 = 1.0;
+        let freq2 = 1.5;
+        let amplitude1 = 50;
+        let amplitude2 = 50;
+        let phase1 = 0; // dalam derajat
+        let phase2 = 0; // dalam derajat
+        
+        // Update nilai dari slider
+        document.getElementById('freq1').addEventListener('input', function(e) {
+            freq1 = parseFloat(e.target.value);
+            document.getElementById('freq1-value').textContent = freq1.toFixed(1) + ' Hz';
+        });
+        
+        document.getElementById('freq2').addEventListener('input', function(e) {
+            freq2 = parseFloat(e.target.value);
+            document.getElementById('freq2-value').textContent = freq2.toFixed(1) + ' Hz';
+        });
+        
+        document.getElementById('amplitude1').addEventListener('input', function(e) {
+            amplitude1 = parseInt(e.target.value);
+            document.getElementById('amplitude1-value').textContent = amplitude1;
+        });
+        
+        document.getElementById('amplitude2').addEventListener('input', function(e) {
+            amplitude2 = parseInt(e.target.value);
+            document.getElementById('amplitude2-value').textContent = amplitude2;
+        });
+        
+        document.getElementById('phase1').addEventListener('input', function(e) {
+            phase1 = parseInt(e.target.value);
+            const rad = (phase1 * Math.PI / 180).toFixed(2);
+            document.getElementById('phase1-value').textContent = `${phase1}° (${rad} rad)`;
+        });
+        
+        document.getElementById('phase2').addEventListener('input', function(e) {
+            phase2 = parseInt(e.target.value);
+            const rad = (phase2 * Math.PI / 180).toFixed(2);
+            document.getElementById('phase2-value').textContent = `${phase2}° (${rad} rad)`;
+        });
+        
+        // Fungsi untuk menggambar grid dan sumbu dengan skala
+        function drawGrid() {
+            // Gambar grid
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            // Garis vertikal setiap 50 pixel
+            for (let x = 0; x < canvas.width; x += 50) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            
+            // Garis horizontal setiap 25 pixel dengan skala
+            for (let y = 0; y < canvas.height; y += 25) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                
+                // Garis yang lebih tebal setiap 50 pixel
+                if (y % 50 === 0) {
+                    ctx.lineWidth = 1.5;
+                    ctx.strokeStyle = '#d0d0d0';
+                } else {
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = '#e8e8e8';
+                }
+                ctx.stroke();
+                
+                // // Tambahkan skala nilai pada sumbu Y
+                // if (y % 50 === 0) {
+                //     const value = Math.abs((canvas.height/2 - y) / 2);
+                //     ctx.fillStyle = '#777';
+                //     ctx.font = '10px Arial';
+                //     ctx.fillText(value.toString(), 5, y + 4);
+                // }
+            }
+
+            // Skala untuk gelombang asal (atas) - maksimum amplitude1
+            for (let y = 0; y < canvas.height/2; y += 25) {
+                if ((y-25) % 50 === 0) {
+                    const value = ((canvas.height/4 - y) / 2);
+                    ctx.fillStyle = '#777';
+                    ctx.font = '10px Arial';
+                    ctx.fillText(value.toString(), 5, y + 4);
+                }
+            }
+
+            // Skala untuk gelombang hasil (bawah) - maksimum amplitude1 + amplitude2  
+            for (let y = canvas.height/2; y < canvas.height; y += 25) {
+                if ((y-25) % 50 === 0) {
+                    const value = ((3*canvas.height/4 - y) / 2);
+                    ctx.fillStyle = '#777';
+                    ctx.font = '10px Arial';
+                    ctx.fillText(value.toString(), 5, y + 4);
+                }
+            }
+            
+            // Garis horizontal di tengah (pemisah antara gelombang asal dan hasil)
+            ctx.strokeStyle = '#bdc3c7';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height / 2);
+            ctx.lineTo(canvas.width, canvas.height / 2);
+            ctx.stroke();
+            
+            // Label sumbu
+            ctx.font = "12px Arial";
+            ctx.fillStyle = "#333";
+            ctx.fillText("Gelombang Asal", canvas.width/2 - 42, canvas.height * 0.49 );
+            ctx.fillText("Gelombang Hasil", canvas.width/2 - 44, canvas.height * 0.99 );
+            
+            // Skala maksimum amplitudo
+            ctx.fillText(`Max: ${amplitude1}`, canvas.width - 50, 20);
+            // ctx.fillText(`Max: ${amplitude2}`, canvas.width - 50, canvas.height/2 - 10);
+            ctx.fillText(`Max: ${amplitude1 + amplitude2}`, canvas.width - 57, canvas.height/2 + 20);
+        }
+        
+        // Variabel untuk animasi
+        let time = 0;
+        let animationId;
+        
+        // Fungsi untuk menggeser gelombang
+        function animate() {
+            // Geser waktu untuk efek bergerak
+            time -= 0.02;
+            
+            // Bersihkan canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Gambar grid dan sumbu (tetap diam)
+            drawGrid();
+            
+            // Konversi fasa dari derajat ke radian
+            const phaseRad1 = phase1 * Math.PI / 180;
+            const phaseRad2 = phase2 * Math.PI / 180;
+            
+            // Titik tengah untuk gelombang asal (atas)
+            const centerY1 = canvas.height / 4;
+            
+            // Titik tengah untuk gelombang hasil (bawah)
+            const centerY2 = 3 * canvas.height / 4;
+            
+            // Gambar gelombang pertama (biru) - atas
+            ctx.beginPath();
+            ctx.strokeStyle = '#3498db';
+            ctx.lineWidth = 2;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                // Konversi posisi x ke waktu (dengan faktor skala)
+                const t = (x / canvas.width) * 4 * Math.PI + time;
+                const y = centerY1 - amplitude1 * Math.sin(2 * Math.PI * freq1 * t + phaseRad1);
+                
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            
+            ctx.stroke();
+            
+            // Gambar gelombang kedua (merah) - atas
+            ctx.beginPath();
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 2;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                // Konversi posisi x ke waktu (dengan faktor skala)
+                const t = (x / canvas.width) * 4 * Math.PI + time;
+                const y = centerY1 - amplitude2 * Math.sin(2 * Math.PI * freq2 * t + phaseRad2);
+                
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            
+            ctx.stroke();
+            
+            // Gambar hasil penjumlahan (hijau) - bawah
+            ctx.beginPath();
+            ctx.strokeStyle = '#2ecc71';
+            ctx.lineWidth = 3;
+            
+            for (let x = 0; x < canvas.width; x++) {
+                // Konversi posisi x ke waktu (dengan faktor skala)
+                const t = (x / canvas.width) * 4 * Math.PI + time;
+                const y1 = amplitude1 * Math.sin(2 * Math.PI * freq1 * t + phaseRad1);
+                const y2 = amplitude2 * Math.sin(2 * Math.PI * freq2 * t + phaseRad2);
+                const y = centerY2 - (y1 + y2);
+                
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            
+            ctx.stroke();
+            
+            // Loop animasi
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Mulai animasi
+        animate();
+    </script>
+</body>
+</html>
