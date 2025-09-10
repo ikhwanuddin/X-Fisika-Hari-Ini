@@ -1,4 +1,4 @@
-# Komunitas X: Fisika Hari Ini (FHI)
+# Animasi HTML Komunitas X: Fisika Hari Ini (FHI)
 
 Repositori ini menyimpan animasi pembelajaran Fisika untuk fenomena sederhana yang ditujukan kepada guru dan orang tua yang ingin menemani anaknya lebih baik dalam belajar.
 
