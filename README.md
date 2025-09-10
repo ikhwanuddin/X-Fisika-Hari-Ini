@@ -8,6 +8,6 @@ https://github.com/user-attachments/assets/e31ba3ed-79cc-48b5-b7a0-337b8f9377f3
 
 - [Animasi Penjumlahan Dua Gelombang](https://htmlpreview.github.io/?https://github.com/ikhwanuddin/x-fisika-hari-ini/blob/main/superposisi-sederhana/penjumlahan_dua_gelombang.html)
 
-Koleksi animasi dapat ditambah sewaktu-waktu, selalu pantau melalui Komunitas X-FHI dan akun [X/@ikhwanuddin](https://x.com/ikhwanuddin).
+Koleksi animasi dapat ditambah sewaktu-waktu, selalu pantau melalui [Komunitas X-FHI Φ](https://x.com/i/communities/1933661529183805859) dan akun [X/@ikhwanuddin](https://x.com/ikhwanuddin).
 
 Credit Music: https://www.youtube.com/watch?v=CtDOhImF6Mw
