@@ -2,7 +2,7 @@
 
 Repositori ini menyimpan animasi pembelajaran Fisika untuk fenomena sederhana yang ditujukan kepada guru dan orang tua yang ingin menemani anaknya lebih baik dalam belajar.
 
-<video src='superposisi-sederhana/penjumlahan_dua_gelombang.mp4' width=180/>
+https://github.com/ikhwanuddin/X-Fisika-Hari-Ini/blob/main/superposisi-sederhana/penjumlahan_dua_gelombang.mp4
 
 Anda tidak perlu mengunduh kode apapun, cukup klik tautan di bawah ini.
 
