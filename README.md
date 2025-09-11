@@ -6,7 +6,7 @@ Anda tidak perlu mengunduh kode apapun, cukup klik tautan di bawah ini.
 
 https://github.com/user-attachments/assets/5a397519-e436-48b0-90c6-d6a02fe04e18
 
-- [Animasi Penjumlahan Dua Gelombang](https://htmlpreview.github.io/?https://github.com/ikhwanuddin/x-fisika-hari-ini/blob/main/superposisi-sederhana/penjumlahan_dua_gelombang.html)
+- [Animasi Penjumlahan Dua Gelombang](https://htmlpreview.github.io/?https://github.com/ikhwanuddin/X-Fisika-Hari-Ini/blob/main/001-penjumlahan-dua-gelombang/penjumlahan_dua_gelombang.html)
 
 Koleksi animasi dapat ditambah sewaktu-waktu, selalu pantau melalui [Komunitas 𝕏-FHI Φ](https://x.com/i/communities/1933661529183805859) dan akun [𝕏/@ikhwanuddin](https://x.com/ikhwanuddin).
 
