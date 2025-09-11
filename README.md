@@ -4,7 +4,7 @@ Repositori ini menyimpan animasi pembelajaran Fisika untuk fenomena sederhana ya
 
 Anda tidak perlu mengunduh kode apapun, cukup klik tautan di bawah ini.
 
-https://github.com/user-attachments/assets/e31ba3ed-79cc-48b5-b7a0-337b8f9377f3
+https://github.com/user-attachments/assets/5a397519-e436-48b0-90c6-d6a02fe04e18
 
 - [Animasi Penjumlahan Dua Gelombang](https://htmlpreview.github.io/?https://github.com/ikhwanuddin/x-fisika-hari-ini/blob/main/superposisi-sederhana/penjumlahan_dua_gelombang.html)
 
