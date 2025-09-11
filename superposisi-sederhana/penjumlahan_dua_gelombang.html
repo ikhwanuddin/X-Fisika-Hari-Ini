@@ -5,6 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animasi Penjumlahan Dua Gelombang</title>
     <style>
+        .info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .info-slider {
+            position: relative;
+        }
+        
+        .info-slides {
+            position: relative;
+            height: 130px;
+            overflow: hidden;
+        }
+        
+        .info-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .info-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .info-slide h3 {
+            color: #2c3e50;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .info-slide p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .info-slide strong {
+            color: #e74c3c;
+        }
+        
+        .info-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+            gap: 15px;
+        }
+        
+        .info-nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .info-nav-btn:hover {
+            background: #2980b9;
+        }
+        
+        .info-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+        }
+        
+        .dot.active {
+            background: #3498db;
+        }
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -27,6 +114,32 @@
             text-align: center;
             margin-bottom: 20px;
             color: #2c3e50;
+        }
+        .equations {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .equation {
+            text-align: center;
+            padding: 5px 10px;
+        }
+        .equation-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .eq-color-box {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 5px;
         }
         .canvas-container {
             width: 100%;
@@ -121,10 +234,28 @@
     <div class="container">
         <h1>Animasi Penjumlahan Dua Gelombang</h1>
         
-        <div class="wave-label">
-            <div><span class="color-box blue"></span> Gelombang 1</div>
-            <div><span class="color-box red"></span> Gelombang 2</div>
-            <div><span class="color-box green"></span> Gelombang Gabungan</div>
+        <div class="equations">
+            <div class="equation">
+                <div class="equation-title">
+                    <span class="eq-color-box blue"></span>
+                    Gelombang 1
+                </div>
+                <div id="eq1">y₁(t) = 50·sin(2π·1.00·t + 0°)</div>
+            </div>
+            <div class="equation">
+                <div class="equation-title">
+                    <span class="eq-color-box red"></span>
+                    Gelombang 2
+                </div>
+                <div id="eq2">y₂(t) = 30·sin(2π·1.50·t + 90°)</div>
+            </div>
+            <div class="equation">
+                <div class="equation-title">
+                    <span class="eq-color-box green"></span>
+                    Gelombang Gabungan
+                </div>
+                <div id="eq3">y(t) = y₁(t) + y₂(t)</div>
+            </div>
         </div>
         
         <div class="canvas-container">
@@ -167,10 +298,41 @@
         </div>
         
         <div class="info">
-            <p>Animasi ini menunjukkan penjumlahan dua gelombang sinusoidal dengan frekuensi berbeda. 
-               Gelombang pertama (biru) dan gelombang kedua (merah) bergerak dari kiri ke kanan pada sumbu atas.
-               Hasil penjumlahan (hijau) ditampilkan pada sumbu bawah.</p>
-            <p>Gunakan slider untuk mengubah frekuensi, amplitudo, dan fasa masing-masing gelombang.</p>
+            <div class="info-slider">
+                <div class="info-slides">
+                    <div class="info-slide active">
+                        <h3>Informasi Dasar</h3>
+                        <p>Animasi ini menunjukkan penjumlahan dua gelombang sinusoidal dengan frekuensi berbeda. 
+                           Gelombang pertama (biru) dan gelombang kedua (merah) bergerak dari kiri ke kanan pada sumbu atas.
+                           Hasil penjumlahan (hijau) ditampilkan pada sumbu bawah.</p>
+                        <p>Gunakan slider untuk mengubah frekuensi, amplitudo, dan fasa masing-masing gelombang.</p>
+                    </div>
+                    <div class="info-slide">
+                        <h3>Interpretasi Sinyal</h3>
+                        <p><strong>Interferensi Konstruktif:</strong> Terjadi ketika puncak gelombang bertemu dengan puncak gelombang lainnya, 
+                           menghasilkan amplitudo yang lebih besar pada gelombang hasil.</p>
+                        <p><strong>Interferensi Destruktif:</strong> Terjadi ketika puncak gelombang bertemu dengan lembah gelombang lainnya, 
+                           menghasilkan amplitudo yang lebih kecil atau bahkan nol pada gelombang hasil.</p>
+                    </div>
+                    <div class="info-slide">
+                        <h3>Fenomena Beat</h3>
+                        <p><strong>Beat</strong> adalah pola naik-turun periodik yang terjadi ketika dua gelombang dengan frekuensi 
+                           yang sedikit berbeda disuperposisikan.</p>
+                        <p><strong>Cara menghitung frekuensi beat:</strong> f<sub>beat</sub> = |f<sub>1</sub> - f<sub>2</sub>|, di mana f<sub>1</sub> dan f<sub>2</sub> adalah frekuensi kedua gelombang.</p>
+                        <p>Pada animasi ini, Anda dapat mengamati beat dengan mengatur frekuensi kedua gelombang 
+                           agar selisihnya kecil (misal: 1 Hz dan 1.1 Hz).</p>
+                    </div>
+                </div>
+                <div class="info-nav">
+                    <button class="info-nav-btn prev">◀</button>
+                    <div class="info-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="info-nav-btn next">▶</button>
+                </div>
+            </div>
         </div>
         
         <div class="credit">
@@ -179,6 +341,34 @@
     </div>
 
     <script>
+        // JavaScript untuk slider info
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.info-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        document.querySelector('.info-nav-btn.next').addEventListener('click', () => {
+            showSlide((currentSlide + 1) % slides.length);
+        });
+        
+        document.querySelector('.info-nav-btn.prev').addEventListener('click', () => {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+        });
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
         // Dapatkan elemen canvas dan konteks
         const canvas = document.getElementById('waveCanvas');
         const ctx = canvas.getContext('2d');
@@ -191,37 +381,55 @@
         let phase1 = 0; // dalam derajat
         let phase2 = 90; // dalam derajat
         
+        // Fungsi untuk memperbarui persamaan yang ditampilkan
+        function updateEquations() {
+            document.getElementById('eq1').textContent = 
+                `y₁(t) = ${amplitude1}·sin(2π·${freq1.toFixed(2)}·t + ${phase1}°)`;
+                
+            document.getElementById('eq2').textContent = 
+                `y₂(t) = ${amplitude2}·sin(2π·${freq2.toFixed(2)}·t + ${phase2}°)`;
+                
+            document.getElementById('eq3').textContent = 
+                `y(t) = y₁(t) + y₂(t)`;
+        }
+        
         // Update nilai dari slider
         document.getElementById('freq1').addEventListener('input', function(e) {
             freq1 = parseFloat(e.target.value);
             document.getElementById('freq1-value').textContent = freq1.toFixed(2) + ' Hz';
+            updateEquations();
         });
         
         document.getElementById('freq2').addEventListener('input', function(e) {
             freq2 = parseFloat(e.target.value);
             document.getElementById('freq2-value').textContent = freq2.toFixed(2) + ' Hz';
+            updateEquations();
         });
         
         document.getElementById('amplitude1').addEventListener('input', function(e) {
             amplitude1 = parseInt(e.target.value);
             document.getElementById('amplitude1-value').textContent = amplitude1;
+            updateEquations();
         });
         
         document.getElementById('amplitude2').addEventListener('input', function(e) {
             amplitude2 = parseInt(e.target.value);
             document.getElementById('amplitude2-value').textContent = amplitude2;
+            updateEquations();
         });
         
         document.getElementById('phase1').addEventListener('input', function(e) {
             phase1 = parseInt(e.target.value);
             const rad = (phase1 * Math.PI / 180).toFixed(2);
             document.getElementById('phase1-value').textContent = `${phase1}° (${rad} rad)`;
+            updateEquations();
         });
         
         document.getElementById('phase2').addEventListener('input', function(e) {
             phase2 = parseInt(e.target.value);
             const rad = (phase2 * Math.PI / 180).toFixed(2);
             document.getElementById('phase2-value').textContent = `${phase2}° (${rad} rad)`;
+            updateEquations();
         });
         
         // Fungsi untuk menggambar grid dan sumbu dengan skala
@@ -253,14 +461,6 @@
                     ctx.strokeStyle = '#e8e8e8';
                 }
                 ctx.stroke();
-                
-                // // Tambahkan skala nilai pada sumbu Y
-                // if (y % 50 === 0) {
-                //     const value = Math.abs((canvas.height/2 - y) / 2);
-                //     ctx.fillStyle = '#777';
-                //     ctx.font = '10px Arial';
-                //     ctx.fillText(value.toString(), 5, y + 4);
-                // }
             }
 
             // Skala untuk gelombang asal (atas) - maksimum amplitude1
@@ -294,13 +494,12 @@
             // Label sumbu
             ctx.font = "12px Arial";
             ctx.fillStyle = "#333";
-            ctx.fillText("Gelombang Asal", canvas.width/2 - 42, canvas.height * 0.49 );
-            ctx.fillText("Gelombang Hasil", canvas.width/2 - 44, canvas.height * 0.99 );
+            ctx.fillText("Gelombang Asal", canvas.width/2 - 42, canvas.height * 0.03 );
+            ctx.fillText("Gelombang Hasil", canvas.width/2 - 44, canvas.height * 0.53 );
             
             // Skala maksimum amplitudo
-            ctx.fillText(`Max: ${amplitude1}`, canvas.width - 50, 20);
-            // ctx.fillText(`Max: ${amplitude2}`, canvas.width - 50, canvas.height/2 - 10);
-            ctx.fillText(`Max: ${amplitude1 + amplitude2}`, canvas.width - 57, canvas.height/2 + 20);
+            ctx.fillText(`Amplitudo Maksimal: ${amplitude1}`, canvas.width - 140, 20);
+            ctx.fillText(`Amplitudo Maksimal: ${amplitude1 + amplitude2}`, canvas.width - 140, canvas.height/2 + 20);
         }
         
         // Variabel untuk animasi
@@ -390,6 +589,9 @@
             // Loop animasi
             animationId = requestAnimationFrame(animate);
         }
+        
+        // Inisialisasi persamaan
+        updateEquations();
         
         // Mulai animasi
         animate();
