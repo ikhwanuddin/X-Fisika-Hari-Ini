@@ -184,8 +184,8 @@
         const ctx = canvas.getContext('2d');
         
         // Variabel untuk parameter gelombang
-        let freq1 = 1.0;
-        let freq2 = 1.5;
+        let freq1 = 1.00;
+        let freq2 = 1.50;
         let amplitude1 = 50;
         let amplitude2 = 50;
         let phase1 = 0; // dalam derajat
@@ -194,12 +194,12 @@
         // Update nilai dari slider
         document.getElementById('freq1').addEventListener('input', function(e) {
             freq1 = parseFloat(e.target.value);
-            document.getElementById('freq1-value').textContent = freq1.toFixed(1) + ' Hz';
+            document.getElementById('freq1-value').textContent = freq1.toFixed(2) + ' Hz';
         });
         
         document.getElementById('freq2').addEventListener('input', function(e) {
             freq2 = parseFloat(e.target.value);
-            document.getElementById('freq2-value').textContent = freq2.toFixed(1) + ' Hz';
+            document.getElementById('freq2-value').textContent = freq2.toFixed(2) + ' Hz';
         });
         
         document.getElementById('amplitude1').addEventListener('input', function(e) {
