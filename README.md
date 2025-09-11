@@ -11,3 +11,9 @@ https://github.com/user-attachments/assets/5a397519-e436-48b0-90c6-d6a02fe04e18
 Koleksi animasi dapat ditambah sewaktu-waktu, selalu pantau melalui [Komunitas 𝕏-FHI Φ](https://x.com/i/communities/1933661529183805859) dan akun [𝕏/@ikhwanuddin](https://x.com/ikhwanuddin).
 
 Credit Music: https://www.youtube.com/watch?v=CtDOhImF6Mw
+
+# Sitasi
+
+Rujuk repositori ini dengan DOI dari Zenodo.
+
+[![DOI](https://zenodo.org/badge/1054413934.svg)](https://doi.org/10.5281/zenodo.17102865)
